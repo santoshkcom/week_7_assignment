@@ -10,8 +10,8 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         int selectedOption;
-        String className = null;
-        Class<?> c = null;
+        String className;
+        Class<?> c;
 
         do {
             Scanner scan = new Scanner(System.in);
@@ -28,6 +28,11 @@ public class App {
     }
 
 
+    /**
+     * display menu for reading class information
+     * @param c
+     * @return
+     */
     private static int getSelectedOption(Class<?> c) {
         Scanner scan = new Scanner(System.in);
         ClassReader classReader = new ClassReader();
@@ -105,6 +110,11 @@ public class App {
         return selectedOption;
     }
 
+    /**
+     * validates if package exists
+     * @param className
+     * @return
+     */
     private static Class<?> validateClass(String className) {
         try {
             Class c = Class.forName(className);
@@ -112,11 +122,16 @@ public class App {
             return c;
         } catch (ClassNotFoundException e) {
             System.out.println("Provided class doesn't exists.");
+            System.out.println("Exited successfully");
             System.exit(0);
         }
-        return null;
+		return null;
     }
 
+    /**
+     * get confirmation from user
+     * @return
+     */
     private static boolean getConfirmation() {
         System.out.println("Do you want to see any other information?");
         System.out.println("press yes to recheck the menu and no if you want to continue");
@@ -125,6 +140,10 @@ public class App {
         return confirmation.equalsIgnoreCase("yes");
     }
 
+    /**
+     * display menu for file operations
+     * @param input
+     */
     private static void getFileMenu(String input) {
         FileWriterHelper writerHelper = new FileWriterHelper();
         Scanner scan = new Scanner(System.in);
@@ -140,7 +159,8 @@ public class App {
                 writerHelper.writeToFile(input);
                 break;
             case 2:
-                writerHelper.RadFileContent();
+                //reading file content
+                writerHelper.readFileContent();
                 break;
             case 3:
                 System.out.println("Exited successfully");

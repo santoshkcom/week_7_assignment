@@ -5,7 +5,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
+/**
+ * FileWriterHelper to read and write input to file
+ */
 public class FileWriterHelper {
+    /**
+     * write input to file
+     * @param inputLine
+     */
     public void writeToFile(String inputLine) {
         PrintWriter out = null;
         try {
@@ -28,9 +35,13 @@ public class FileWriterHelper {
 
     }
 
-    public void RadFileContent() {
+    /**
+     * read from file
+     */
+    public void readFileContent() {
         String fileName = "class_details.txt";
-        System.out.println("Class details:");
+        System.out.println("-------------------------------------------");
+        System.out.println("Class details stored:");
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             stream.forEach(System.out::println);
 
